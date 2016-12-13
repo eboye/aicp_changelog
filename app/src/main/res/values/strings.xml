@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ChangeLog</string>
+    <string name="dummy">dummy</string>
 </resources>

@@ -38,6 +38,8 @@ public class ChangelogActivity extends AppCompatActivity {
         imageView.setImageDrawable(getResources().getDrawable(R.drawable.aicp_wall));
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.changelog);
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setHasFixedSize(true);
         ArrayList<ChangelogItem> changeLogArray = new ArrayList<>();
 
         String CHANGELOG_PATH = "/system/etc/Changelog.txt";
@@ -48,7 +50,7 @@ public class ChangelogActivity extends AppCompatActivity {
             Date nowDate = new Date();
             BufferedReader reader = new BufferedReader(new FileReader(CHANGELOG_PATH));
             String line;
-            String directory;
+            String directory = "";
             String commits = "";
             boolean checknext = false;
             while ((line = reader.readLine()) != null) {
@@ -84,15 +86,16 @@ public class ChangelogActivity extends AppCompatActivity {
                         }
                         changeLogArray.add(new ChangelogItem(timeString));
                     } else if (line.matches("^\\s*(   \\* )\\S*")) {//it's directory
-                        directory = line.replaceAll("(   \\* )", "");
                         if (checknext) {
-                            commits = commits.substring(0, commits.lastIndexOf("\n\n"));
+                            commits = commits.substring(0, commits.lastIndexOf("\n\n"));//remove lf on end
                             changeLogArray.add(new ChangelogItem(directory, commits));
+                            commits = ""; //reset commits
                             checknext = false;
                         } else {
                             checknext = true;
                             commits = "";
                         }
+                        directory = line.replaceAll("(   \\* )", "");
                     } else {
                         commits += line.substring(8, line.length()) + "\n\n";
                         checknext = true;
