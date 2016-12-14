@@ -7,8 +7,8 @@ If you want to contribute, you can make a pull request.
 
 ----------
 
-![AICP Changelog SS](http://i.imgur.com/YThUBa7.png?1)
-![AICP Changelog SS](http://i.imgur.com/7UlekWT.png?1)
+![AICP Changelog SS](http://i.imgur.com/YThUBa7.png?2)
+![AICP Changelog SS](http://i.imgur.com/7UlekWT.png?2)
 
 
 ----------
